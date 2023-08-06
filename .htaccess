@@ -1,0 +1,19 @@
+Options +SymLinksIfOwnerMatch
+RewriteEngine On
+
+RewriteRule ^(robots.txt) - [L]
+RewriteRule ^(sitemap.xml) - [L]
+
+
+# Allow Installatron requests
+RewriteCond %{REQUEST_FILENAME} deleteme\.\w+\.php
+RewriteRule (.*) - [L] 
+
+RewriteRule ^ public/index.php [L]
+
+
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Headers "*"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+</IfModule>
